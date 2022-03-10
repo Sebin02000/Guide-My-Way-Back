@@ -1,0 +1,10 @@
+const express = require('express');
+const router = express.Router();
+const user = require('./controllers/user');
+const map = require('./controllers/map');
+// app.use("/auth/", authRouter);
+router.post('/route/', map.routeMap);
+router.post('/services/', map.allServices);
+router.post('/serviceroute/', map.routeMapWithServices);
+router.get('/user/', user.login);
+module.exports = router;
