@@ -1,4 +1,5 @@
 // remove html tags from string
+let instructions=[];
 removeHtmlTags = function(str) {
     return str.replace(/<(?:.|\n)*?>/gm, '');
 };
@@ -7,6 +8,7 @@ removeHtmlTags = function(str) {
 parseSteps = function(steps) {
     var parsedSteps = [];
     steps.forEach(function(step) {
+        instructions.push(removeHtmlTags(step.html_instructions));
         parsedSteps.push({
             'instruction': removeHtmlTags(step.html_instructions),
             "maneuver": steps.maneuver??"",
@@ -41,6 +43,7 @@ parseLegs = function(legs) {
 }
 
 exports.parseRouteData = function(data) {
+    instructions=[];
     const routeData = data["routes"][0];
     const bound= routeData['bounds'];
     const  legs= parseLegs(routeData['legs']);
@@ -51,6 +54,7 @@ exports.parseRouteData = function(data) {
         "bound": bound,
         "legs": legs,
         "overview_polyline": polyLine,
+        "instructions": instructions
         
     };
     
