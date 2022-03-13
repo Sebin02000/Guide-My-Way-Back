@@ -54,7 +54,7 @@ exports.routeMapWithServices=(req,res)=>{
 exports.allServices=(req,res)=>{
    let keyword= req.body.keyword;
    let location = req.body.location;
-   let url=`https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=${keyword}&location=${location}&radius=15000&key=${process.env.GOOGLE_API_KEY}` 
+   let url=`https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=${keyword}&location=${location}&radius=20000&key=${process.env.GOOGLE_API_KEY}` 
    axios.get(url)
    .then(response => {
        let data= serviceParce.parseServiceData(response.data);
