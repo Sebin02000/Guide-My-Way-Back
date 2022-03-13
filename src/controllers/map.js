@@ -30,10 +30,7 @@ exports.routeMapWithServices=(req,res)=>{
     let origin = req.body.origin;
     let destination = req.body.destination;
     let mode = req.body.mode;
-    let services;
-    req.body.services.forEach(service=>{
-        services+="|"+service;
-    });
+    let services=req.body.services;
     // get directions with way points
     let url = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&mode=${mode}&waypoints=optimize:true${services}&key=${process.env.GOOGLE_API_KEY}`;
     //
@@ -54,7 +51,7 @@ exports.routeMapWithServices=(req,res)=>{
 exports.allServices=(req,res)=>{
    let keyword= req.body.keyword;
    let location = req.body.location;
-   let url=`https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=${keyword}&location=${location}&radius=20000&key=${process.env.GOOGLE_API_KEY}` 
+   let url=`https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=${keyword}&location=${location}&radius=15000&key=${process.env.GOOGLE_API_KEY}` 
    axios.get(url)
    .then(response => {
        let data= serviceParce.parseServiceData(response.data);
