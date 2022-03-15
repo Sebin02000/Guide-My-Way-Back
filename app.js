@@ -5,7 +5,8 @@ require('dotenv').config();
 const indexRouter = require('./src/index');
 const apiResponse = require('./src/helpers/apiResponse');
 const cors = require('cors');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const handlebars =require('express-handlebars').engine
 
 // DB connection
 const MONGODB_URL = process.env.MONGODB_URL;
@@ -32,6 +33,10 @@ const app = express();
 if (process.env.NODE_ENV !== 'test') {
   app.use(logger('dev'));
 }
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
+app.engine('hbs',handlebars({extname:'hbs',defaultLayout:'layout',layoutsDir:__dirname+'/views/layout/',partialsDir:__dirname+'/views/partials/'}));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
