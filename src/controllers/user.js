@@ -75,10 +75,10 @@ console.log(req.body);
                         newUser.save()
                             .then(user => {
                                 const mailObj = {
-                                    from: "no-reply@mapApp.com",
+                                    from: "no-reply@guidemyway12.com",
                                     recipients: [user.email],
                                     subject: "[ACTION REQUIRED] Verify your email to continue.",
-                                    message: `<h1>Hey ${user.firstname}, </h1><h1>Please verify your email to continue</h1> <br> <a href="${process.env.HOST}/api/user/verify/${user.token}"> <button>Verify</button>`,
+                                    message: `<h1>Hey ${user.firstname}, welcome to Guide My Way </h1><h1>Please verify your email to continue</h1> <br> <a href="${process.env.HOST}/api/user/verify/${user.token}"> <button>Verify</button>`,
                                 };
                                     sendEmail(mailObj);
 apiResponse.successResponseWithData(res, "User registered successfully.", user);                            })
@@ -113,10 +113,10 @@ exports.login = (req, res) => {
             }
     else if(!user.isVerified){
         const mailObj = {
-            from: "no-reply@mapapp.com",
+            from: "no-reply@guidemyway12.com",
             recipients: [user.email],
             subject: "[ACTION REQUIRED] Verify your email to continue.",
-            message: `<h1>Hey ${user.firstname}, </h1><h1>Please verify your email to continue</h1> <br> <a href="${process.env.HOST}/api/user/verify/${user.token}"> <button>Verify</button>`,
+            message: `<h1>Hey ${user.firstname}, weolcome to Guide My Way </h1><h1>Please verify your email to continue</h1> <br> <a href="${process.env.HOST}/api/user/verify/${user.token}"> <button>Verify</button>`,
           };
             sendEmail(mailObj);
             errors.email = 'Please verify your email';
@@ -168,7 +168,7 @@ exports.resetPassword = (req, res) => {
                 return apiResponse.errorResponse(res, "No user found");
             }
             const mailObj = {
-                from: "no-reply@mapapp.com",
+                from: "no-reply@guidemyway12.com",
                 recipients: [user.email],
                 subject: "Reset Password",
                 message: `<h1>Hey ${user.name}, </h1><h1>Please click on the link below to reset your password</h1> <br> <a href="${process.env.HOST}/api/user/reset/${user.token}"> <button>Reset Password</button>`,
