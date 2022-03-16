@@ -1,7 +1,5 @@
 // remove alphanumeric words from string
-function removeAlphaNumeric(str) {
-    return str.replace(/[^a-zA-Z0-9]/g, '');
-}
+
 
 
 exports.parseServiceData = function(data) {
@@ -15,7 +13,7 @@ exports.parseServiceData = function(data) {
             name:result.name,
             rating:result.rating,
             noOfRating:result.user_ratings_total,
-            vicinity:removeAlphaNumeric(result.vicinity??"")
+            vicinity:result.vicinity??" ",
         }
         finalResult.push(op)
     }
