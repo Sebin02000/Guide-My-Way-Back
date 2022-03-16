@@ -2,6 +2,7 @@ const axios = require('axios');
 const apiResponse = require('../helpers/apiResponse');
 const routeParse = require('../helpers/route');
 const serviceParce = require('../helpers/service');
+const getCat= require('../helpers/category');
 // Route map
 exports.routeMap=(req,res)=>{
     let origin = req.body.origin;
@@ -49,7 +50,7 @@ exports.routeMapWithServices=(req,res)=>{
 
 // All services
 exports.allServices=(req,res)=>{
-   let keyword= req.body.keyword;
+   let keyword= getCat.parseCategoryData(req.body.keyword);
    let location = req.body.location;
    let url=`https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=${keyword}&location=${location}&rankby=distance&key=${process.env.GOOGLE_API_KEY}` 
    axios.get(url)
