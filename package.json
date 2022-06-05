@@ -8,7 +8,7 @@
     "dev": "nodemon ./bin/www ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Joel Sunny Varghese",
+  "author": "Sebin Benny",
   "license": "ISC",
   "devDependencies": {
     "eslint": "^8.0.1",
